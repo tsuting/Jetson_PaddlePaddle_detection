@@ -18,7 +18,7 @@ import argparse
 # For the post-processing parsing function
 import ctypes
 import numpy as np
-from paddle_decoder import td_PaddlePaddlePostProcess
+from model_common.paddle_decoder import td_PaddlePaddlePostProcess
 
 # Performance
 from common.FPS import GETFPS
