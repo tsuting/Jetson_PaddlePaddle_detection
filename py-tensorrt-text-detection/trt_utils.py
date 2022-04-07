@@ -1,9 +1,14 @@
+"""
+This code is written with reference to 
+sample code provided from official tensorRT sample
+https://github.com/NVIDIA/TensorRT/blob/main/samples/python/
+"""
 from typing import Dict, List
-from pycuda import autoinit
 import pycuda.driver as cuda
 from pathlib import Path
 import tensorrt as trt
 import numpy as np
+from pycuda import autoinit
 
 DEFAULT_DB_PROFILE = [{"x": [(1, 3, 1088, 1440)]}]
 EXPLICIT_BATCH = 1 << (int)(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH)
@@ -92,6 +97,11 @@ class TRTUtils:
     def get_engine(self):
         """
         get inference engine
+        You may find a latency increase if you are doing inference in
+        the same way as the `main` method in 
+        https://github.com/NVIDIA/TensorRT/blob/main/samples/python/yolov3_onnx/onnx_to_tensorrt.py
+        The `.create_execution_context()` should only be called once, 
+        please avoid using `with` syntax to create multiple execution context.
         """
         if Path(self._engine_path).exists():
             # If a serialized engine exists, use it instead of building an engine.
@@ -109,7 +119,7 @@ class TRTUtils:
         """
         perform inference on the given input data
         note the input data is not a list
-
+        MODIFY ME based on the actual model used
         :param input_data: input data to be predict on (after preprocessing)
         :type input_data: np.ndarray
 
