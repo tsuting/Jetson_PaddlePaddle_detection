@@ -1,6 +1,18 @@
 # Python TensorRT inference example
 
-
+- [Python TensorRT inference example](#python-tensorrt-inference-example)
+  - [Pre-requisite](#pre-requisite)
+  - [Tested OS Environment](#tested-os-environment)
+  - [Development Environment](#development-environment)
+    - [Install TensorRT](#install-tensorrt)
+      - [Method 1: Native Install](#method-1-native-install)
+      - [Method 2 (Recommended): Use tensorRT container](#method-2-recommended-use-tensorrt-container)
+    - [Install Dependencies](#install-dependencies)
+  - [Model Conversion (ONNX to TensorRT)](#model-conversion-onnx-to-tensorrt)
+    - [Method 1: Using `polygraphy` or `trexec`](#method-1-using-polygraphy-or-trexec)
+    - [Method 2: Using tensorRT libraries (see utility file `trt_utils.py`)](#method-2-using-tensorrt-libraries-see-utility-file-trt_utilspy)
+  - [Related Files for this folder](#related-files-for-this-folder)
+  - [Tips and Questions When Running TensorRT](#tips-and-questions-when-running-tensorrt)
 
 ## Pre-requisite
 - You MUST have Nvidia GPU on your device, regardless you are using a physical computer or a virtual machine.
@@ -15,7 +27,7 @@
     - Windows OS
     - MacOS
 
-- Using WSL (Windows Subsystem Linux) is NOT RECOMMEND. You may run into unknown error messages.
+- Using WSL (Windows Subsystem Linux) is NOT RECOMMENDED. You may run into unknown error messages.
 
 ## Development Environment
 ### Install TensorRT
