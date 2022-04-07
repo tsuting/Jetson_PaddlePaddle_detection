@@ -1,23 +1,31 @@
-# Introduction 
-OCR with the paddlepaddle detection model and object tracking on deepStream. Input is from an usb camera. 
+# Introduction
 
-The code shows how  to
-* Use usb camera as an input
-* Use RTSP or EGL as an output
+Implement text detection with [the PaddlePaddle text detection model](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.4/doc/doc_en/models_list_en.md#1-text-detection-model) and [object tracking](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvtracker.html) on deepStream using python bindings.
+
+The code shows how to
+
+* Use a webcam as an input
+* Use RTSP/EGL/fakesink as an output
 * Use different object trackers
 * Use a customized parser
 * Add performance measurement (fps)
 
-# Prerequisite
+Most of the code are copied from [`deepstream_python_apps/apps/`](https://github.com/NVIDIA-AI-IOT/deepstream_python_apps/tree/master/apps). The code for PaddlePaddle decoder is from [here](https://github.com/PaddlePaddle/PaddleOCR/blob/63cd23ab1c3f092666aad627a27dab1588aca83f/ppocr/postprocess/__init__.py) and [here](https://github.com/PaddlePaddle/PaddleOCR/blob/63cd23ab1c3f092666aad627a27dab1588aca83f/ppocr/postprocess/db_postprocess.py
+).
 
-  * Remember to add this folder under `deepstream_python_apps`
-  * Place the onnx model under the same layer as the python files
-  * If you would like to run DeepSORT object tracker, please follow the documentation to prepare the model.
-    * /opt/nvidia/deepstream/deepstream/sources/tracker_DeepSORT/README
+## Prerequisite
 
-# Parameters
+* A webcam
+* Follow [the guidance](setup_guidance_AGX_Xavier.md) to setup your device and environment if you're using Jetson AGX Xavier Developer Kit.
+* Remember to add this folder under `deepstream_python_apps`.
+* Place the onnx model under the same layer as the python files or please check the `onnx-file` in `ocr_pgie_config.txt`.
+* If you would like to run DeepSORT object tracker, please follow the documentation to prepare the model.
+  * `/opt/nvidia/deepstream/deepstream/sources/tracker_DeepSORT/README`
+  * `dpkg -l | grep TensorRT` to check if `uff-converter-tf` and `graphsurgeon-tf` packages are installed.
 
-```python 
+## Parameters
+
+```bash
 usage: deepstream_ocr.py [-h] -d DEVICE_PATH [-c {H264,H265}] [-b BITRATE]
                          [-o {rtsp,egl,none}] [-t {NvDCF,DeepSORT,IOU}]
 
@@ -41,10 +49,32 @@ optional arguments:
                         The approach to do objec tracking, default=NvDCF
 ```
 
-# Run
+## Prepare environments
+
+`pip3 install -r requirements.txt`
+
+## Run
+
 `python3 deepstream_ocr.py -d /dev/video0`
 
-# Troubleshooting
+## Troubleshooting
 
 * When access RTSP, `Warning: g_object_get_is_valid_property: object class 'GstUDPSrc' has no property named 'pt'`
   * From [here](https://forums.developer.nvidia.com/t/warning-when-trying-to-view-the-rtsp-generated-by-deepstream/107184/5), *The print is harmless and please ignore it. We will check to fix it in future release.*
+
+## Q&A
+
+* Where does `net-scale-factor` and `offsets` come from? \
+  These two are the parameters for preprocessing the frames. Please check [here](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvinfer.html#gst-nvinfer) for more details.
+  
+  In [the preprocessing step for PaddlePaddle text detection model](https://github.com/PaddlePaddle/PaddleOCR/blob/d9d6e23e3074c075d22da1e32956b4278502d92d/tools/infer/predict_det.py), the std is `[0.229, 0.224, 0.225]`, mean is `[0.485, 0.456, 0.406]`, and the scale is `1/255`. The normalization function is `(image*scale - mean)/std` from [here](https://github.com/PaddlePaddle/PaddleOCR/blob/a67a6fa382cbf55aff12154d0fd3635c3a980b07/ppocr/data/imaug/operators.py#L115).
+  
+  In Gst-nvinfer, `y = net scale factor*(x-mean)` and `net-scale-factor` can be only one number.
+  
+  Therefore, mean (PaddlePaddle) is divided by the scale (PaddlePaddle) to get `mean` for Gst-nvinfer. Then the `net scale factor` would be the average of scale(PaddlePaddle)/std(PaddlePaddle).
+
+* How to use a customized parser but not using Triton server? \
+  The key is to set `network-type=100` and `output-tensor-meta=1` in `ocr_pgie_config.txt` as stated [here](https://forums.developer.nvidia.com/t/use-custom-behavior-cloning-neural-network-with-nvinfer/107827/4?u=yomizuya).
+
+* How to get the output layers' names of onnx models? \
+  https://netron.app/
