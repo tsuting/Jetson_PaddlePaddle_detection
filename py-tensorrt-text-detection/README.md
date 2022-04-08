@@ -27,7 +27,7 @@
     - Windows OS
     - MacOS
 
-- Using WSL (Windows Subsystem Linux) is NOT RECOMMENDED. You may run into unknown error messages.
+- Using WSL (Windows Subsystem Linux) is NOT RECOMMENDED. You may want to check the "Known Issues" section from the [Nvidia documentation](https://docs.nvidia.com/deeplearning/tensorrt/release-notes/tensorrt-8.html#rel-8-4-0-EA).
 
 ## Development Environment
 ### Install TensorRT
@@ -37,13 +37,13 @@ alone.
 1. (If you are working on conda virtual environment), follow steps in 
     [this page](https://github.com/stan-dev/pystan/issues/294).
 1. Install pycuda using pip, version < 2021.1 
-1. Pip install tensorR (change the tensorR version to the expected one, suggest no earlier than 7.0 version)
+1. Pip install tensorRT (change the tensorR version to the expected one, suggest no earlier than 7.0 version)
     ```bash
     python3 -m pip install --upgrade setuptools pip
     python3 -m pip install nvidia-pyindex
     python3 -m pip install --upgrade nvidia-tensorrt
     ```
-    If you are using a requirements.txt to install tensorR package, plase make sure `--extra-index-url https://pypi.ngc.nvidia.com` is added to your requirements.txt file.
+    If you are using a requirements.txt to install tensorRT package, plase make sure `--extra-index-url https://pypi.ngc.nvidia.com` is added to your requirements.txt file.
 
 #### Method 2 (Recommended): Use [tensorRT container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorrt)
 1. Install Nvidia docker tool chain, following the guide [on this page](https://github.com/NVIDIA/libnvidia-container)
