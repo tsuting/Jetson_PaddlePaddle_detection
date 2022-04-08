@@ -98,7 +98,7 @@ Please refer to the parent level readme for details of each file.
     └── nutrition_label.jpg
 ```
 - `trt_utils.py` is the python script showing how to convert an onnx model to tensorRT engine using python API and then run single inference using the converted tensorRT engine. Note that, the onnx to tensorRT engine conversion is tailored to paddlepaddle text detection model,  PLEASE MODIFY IT ACCORDINGLY BASED ON YOUR MODEL.
-- `tensorrt_notebook.ipynb` is a python notebook that demostrates the model conversion and inference process using tensorRT engine and PaddlePaddle text detection model.
+- `tensorrt_notebook.ipynb` is a python notebook that demonstrates the model conversion and inference process using tensorRT engine and PaddlePaddle text detection model.
 
 
 ## Tips and Questions When Running TensorRT
