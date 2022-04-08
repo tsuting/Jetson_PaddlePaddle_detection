@@ -17,7 +17,7 @@ Furthermore, we will build and install `Python bindings of deepStream SDK` on th
 ## Prerequisite
 
 * A machine with Ubuntu Linux x64 Version 18.04 or 16.04
-* An USB keyboard and a mouse
+* A USB keyboard and a mouse
 * A display (either HDMI or DP)
 * A network cable (or you can buy [a wireless card](https://forums.developer.nvidia.com/t/wi-fi-adapter-for-agx-xavier/127512))
 * A Nvidia developer account
@@ -33,7 +33,7 @@ Furthermore, we will build and install `Python bindings of deepStream SDK` on th
     * `deepstream-app --version-all`
 
 3. (Optional) Run examples, the details for each example could be found [here](https://docs.nvidia.com/metropolis/deepstream/5.0/dev-guide/index.html#page/DeepStream_Development_Guide/deepstream_Sample_configs_and_Streams.html).
-    * For example, if you have a webcam, `sudo deepstream-app -c /opt/nvidia/deepstream/deepstream-6.0/samples/configs/deepstream-app/source1_usb_dec_infer_resnet_int8.tx`
+    * For example, if you have a USB webcam, `sudo deepstream-app -c /opt/nvidia/deepstream/deepstream-6.0/samples/configs/deepstream-app/source1_usb_dec_infer_resnet_int8.tx`
 
 4. (Optional) Change the power mode and the fan mode
     * Please refer [here](https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/power_management_jetson_xavier.html#wwpID0E0YO0HA) for more details.

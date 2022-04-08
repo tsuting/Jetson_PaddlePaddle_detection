@@ -4,7 +4,7 @@ Implement text detection with [the PaddlePaddle text detection model](https://gi
 
 The code shows how to
 
-* Use a webcam as an input
+* Use a USB webcam as an input
 * Use RTSP/EGL/fakesink as an output
 * Use different object trackers
 * Use a customized parser
@@ -15,10 +15,10 @@ Most of the code are copied from [`deepstream_python_apps/apps/`](https://github
 
 ## Prerequisite
 
-* A webcam
+* A USB webcam
 * Follow [the guidance](setup_guidance_AGX_Xavier.md) to setup your device and environment if you're using Jetson AGX Xavier Developer Kit.
 * Remember to add this folder under `deepstream_python_apps`.
-* Place the onnx model under the same layer as the python files or please check the `onnx-file` in `ocr_pgie_config.txt`.
+* Place the onnx model under the same directory as the python files or please modify `onnx-file` in `ocr_pgie_config.txt`.
 * If you would like to run DeepSORT object tracker, please follow the documentation to prepare the model.
   * `/opt/nvidia/deepstream/deepstream/sources/tracker_DeepSORT/README`
   * `dpkg -l | grep TensorRT` to check if `uff-converter-tf` and `graphsurgeon-tf` packages are installed.
@@ -51,7 +51,7 @@ optional arguments:
 
 ## Prepare environments
 
-`pip3 install -r requirements.txt`
+`pip3 install -r ../requirements.txt`
 
 ## Run
 
