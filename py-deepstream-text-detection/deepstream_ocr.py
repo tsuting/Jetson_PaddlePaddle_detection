@@ -122,7 +122,7 @@ def nvds_infer_parse_custom_ocr(output_layer):
 
     object_list = []
     # loop through each bounding box and add to object_list
-    # TODO: Can't we direclty add to nvds_add_obj_meta_to_frame in the next function?
+    # TODO: Can't we directly add to nvds_add_obj_meta_to_frame in the next function?
     for i in range(result.shape[0]):
         # https://docs.nvidia.com/metropolis/deepstream/5.0.1/sdk-api/Gst_Infer/NvDsInferObjectDetectionInfo.html
         res = pyds.NvDsInferObjectDetectionInfo()
