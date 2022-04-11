@@ -7,7 +7,7 @@ In this repo, we show two different methods of doing inference using *python* an
 - Using [TensorRT](https://developer.nvidia.com/tensorrt) directly with custom video processing code, see sample code in [this folder](py-tensorrt-text-detection/)
 
 **Why do we want to have this repo?** </br>
-When working with Nvidia python SDKs (especially Deepstream), we figured out there are many questions than answers.
+When working with Nvidia python SDKs (especially Deepstream), we figured out there are more questions than answers.
 Therefore, we decided to keep the record for future use purpose.
 
 
