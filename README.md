@@ -1,6 +1,6 @@
 # Model Inference on Jetson Devices
 
-## About this repo
+## About this Repository
 This repo aims at showing examples of how to run inference on Nvidia Jetson devices, the code has been tested on both Jetson Nano (4GB version) and Jetson AGX Xavier Developer Kit (16 GB version).
 In this repo, we show two different methods of doing inference using *python* and your *own model*:
 - Using [Nvidia Deepstream framework](https://developer.nvidia.com/deepstream-sdk), see sample code in [this folder](py-deepstream-text-detection/)
@@ -20,7 +20,7 @@ For setting up your Nvidia device, we've provided some [tips](py-deepstream-text
 Yes you can. However, you *must* make sure your device has an Nvidia GPU and satisfy the requirement of using TensorRT or Deepstream.
 
 ## About the Sample Application
-This repository uses models from [PaddlePaddle OCR](https://github.com/PaddlePaddle/PaddleOCR), specifically, text detection only.
+This repository uses the model from [PaddlePaddle OCR](https://github.com/PaddlePaddle/PaddleOCR), specifically, text detection only.
 We provided a copy of the ONNX model used in this repo, see [here](models/ch_PP-OCRv2_det_infer.onnx).
 If you have any questions related to the model, please directly contact [PaddlePaddle OCR](https://github.com/PaddlePaddle/PaddleOCR).
 
